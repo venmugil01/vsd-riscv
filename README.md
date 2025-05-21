@@ -45,3 +45,4 @@ After this open a new tab and type the command
 After compiling we will get the Assembly language code of it and now we can seaarch for main part of the code by using ``/main``
 
 and the Assembly language for main function of the code is as :
+![image](https://github.com/user-attachments/assets/c154a908-7cad-4fa6-bdb3-60b4351bc485)
