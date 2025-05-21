@@ -39,4 +39,9 @@ riscv64-unknown-elf-gcc        : This is the cross-compiler for the 64-bit RISC-
 
 -o sum1ton.o                 : Defines 'sumofn.o' as the name of the output object file generated after compilation.
 ````
-After this open a new tab and type the command `` riscv64-unknown-elf-objdump -d sum1ton.o | less``
+After this open a new tab and type the command 
+
+`` riscv64-unknown-elf-objdump -d sum1ton.o | less``
+After compiling we will get the Assembly language code of it and now we can seaarch for main part of the code by using ``/main``
+
+and the Assembly language for main function of the code is as :
