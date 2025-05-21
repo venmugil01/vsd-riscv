@@ -46,3 +46,18 @@ After compiling we will get the Assembly language code of it and now we can seaa
 
 and the Assembly language for main function of the code is as :
 ![image](https://github.com/user-attachments/assets/c154a908-7cad-4fa6-bdb3-60b4351bc485)
+
+using O1 there are 11 instructions.
+
+Now we will check number of instructions using ``-Ofast``
+![image](https://github.com/user-attachments/assets/d2270c3c-9ede-4df3-aff6-2b1d47f6293a)
+
+Even using Ofast there are 11 instructions 
+
+Difference between -O1 and -Ofast 
+`-O1`Applies basic optimizations to improve performance without making compilation too slow or complex. It’s a safe and balanced option that sticks to standard C behavior.
+
+`-Ofast`
+Pushes the compiler to apply aggressive optimizations for maximum speed, even if it means ignoring some language rules or sacrificing portability. It can make code run faster, but may also change how certain calculations behave.
+
+</details>
