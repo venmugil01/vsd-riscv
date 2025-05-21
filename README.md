@@ -15,4 +15,28 @@ gcc sum1ton.c
 ````
 
  ./a.out is used to check the result 
-  ![c_code](https://github.com/user-attachments/assets/ed0f9d60-8b29-430a-ac68-3a0c0a9056ba)
+
+ ![c_code](https://github.com/user-attachments/assets/ed0f9d60-8b29-430a-ac68-3a0c0a9056ba)
+
+RISC-V Based Lab
+----
+Now we are compiling the same code in RISCV 
+compiling using command ```cat sum1ton.c```
+![image](https://github.com/user-attachments/assets/1b02db9d-56bb-487e-901c-a70e05957dab)
+
+For compiling the above C code in RISCV use command 
+```
+ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+```
+
+Command breakdown : 
+ ````
+riscv64-unknown-elf-gcc        : This is the cross-compiler for the 64-bit RISC-V architecture that generates ELF (Executable and Linkable Format) binaries.
+
+-mabi=lp64                   : Sets the ABI (Application Binary Interface) to 'lp64', meaning long and pointer types are 64 bits
+
+-march=rv64i                 : Specifies the target RISC-V architecture variant (in this case, RV64I: a 64-bit base integer instruction set).
+
+-o sum1ton.o                 : Defines 'sumofn.o' as the name of the output object file generated after compilation.
+````
+After this open a new tab and type the command `` riscv64-unknown-elf-objdump -d sum1ton.o | less``
