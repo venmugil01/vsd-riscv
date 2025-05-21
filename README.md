@@ -6,5 +6,5 @@ The VSDSquadron Mini-Internship is a hands-on journey into VLSI chip design and 
  C-Based Lab
 
  Program that gives the sum of n numbers using C in leafpad editor."sumofn.c" is the filename
- 
+ https://github.com/venmugil01/vsd-riscv/blob/main/c_code.jpg
 
