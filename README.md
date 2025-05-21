@@ -22,6 +22,7 @@ RISC-V Based Lab
 ----
 Now we are compiling the same code in RISCV 
 compiling using command ```cat sum1ton.c```
+
 ![image](https://github.com/user-attachments/assets/1b02db9d-56bb-487e-901c-a70e05957dab)
 
 For compiling the above C code in RISCV use command 
@@ -42,19 +43,23 @@ riscv64-unknown-elf-gcc        : This is the cross-compiler for the 64-bit RISC-
 After this open a new tab and type the command 
 
 `` riscv64-unknown-elf-objdump -d sum1ton.o | less``
+
 After compiling we will get the Assembly language code of it and now we can seaarch for main part of the code by using ``/main``
 
 and the Assembly language for main function of the code is as :
+
 ![image](https://github.com/user-attachments/assets/c154a908-7cad-4fa6-bdb3-60b4351bc485)
 
 using O1 there are 11 instructions.
 
-Now we will check number of instructions using ``-Ofast``
+Now we will check number of instructions using ``-Ofast``:
+
 ![image](https://github.com/user-attachments/assets/d2270c3c-9ede-4df3-aff6-2b1d47f6293a)
 
 Even using Ofast there are 11 instructions 
 
 Difference between -O1 and -Ofast 
+
 `-O1`Applies basic optimizations to improve performance without making compilation too slow or complex. It’s a safe and balanced option that sticks to standard C behavior.
 
 `-Ofast`
