@@ -9,9 +9,10 @@ The VSDSquadron Mini-Internship is a hands-on journey into VLSI chip design and 
  save that leafpad code(ctrl+s) and close the window(ctrl+w)
  
  then in terminal run the saved c program by the following commands
- ''''
- gcc sumofn.c
- ./a.out
- '''''
+ ````
+gcc sum1ton.c
+./a.out 
+````
+
  ./a.out is used to check the result 
   ![c_code](https://github.com/user-attachments/assets/ed0f9d60-8b29-430a-ac68-3a0c0a9056ba)
