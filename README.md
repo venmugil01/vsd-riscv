@@ -106,6 +106,13 @@ Decrease the timer value by one every second.
 
 Stop the countdown when the timer reaches zero.
 
+C program in leafpad
+![image](https://github.com/user-attachments/assets/afae49a6-a270-46f6-9cb0-4bb279d1905d)
+
+compilation
+
+![p2](https://github.com/user-attachments/assets/e599dc0d-d3d6-45d5-9441-4f37e5fa23ee)
+
 
 
 
