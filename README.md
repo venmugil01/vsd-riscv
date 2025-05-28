@@ -74,3 +74,19 @@ What is Spike simulation?
 Spike is a RISC-V ISA simulator used to run and test RISC-V programs. GCC compiles C/C++ code for RISC-V, and Spike simulates its execution. The command spike pk sum1ton.o runs the compiled code to check if the instructions work correctly and to display the program output.
 
 ![1a](https://github.com/user-attachments/assets/aacb19e5-b6ff-491c-ac7f-f73b080638a5)
+
+In Debugger we Debug the Assembly Language by following the each instruction .At the address of `100b4` the register value of stack point `sp` is `0x0000003ffffffb50` and after completion of instruction`sp, sp, -16` ,the new value of register stack pointer is `0x0000003ffffffb40`
+Instruction: `lui a0, %hi(LC1)`
+LUI is an instruction in the RISC-V architecture that loads a 20-bit immediate value into the upper 20 bits of a 32-bit or 64-bit register. The lower 12 bits of the register are set to zero.
+In the example, the instruction loads the upper 20 bits of a label (LC1) into the register a0
+
+` addi`
+Add Immediate
+![image](https://github.com/user-attachments/assets/e8b72f51-cee7-4706-9fec-226a7d1eb7e9)
+
+ Instruction:` addi a0, a0, %lo(LC1)`
+Purpose: The ADDI instruction adds an immediate value (12-bit constant) to the value in a source register (rs1) and stores the result in a destination register (rd).
+
+
+![image](https://github.com/user-attachments/assets/fc1a786b-20fc-42ff-8d2e-96c13c337250)
+
