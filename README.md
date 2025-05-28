@@ -119,7 +119,7 @@ Assembly language code
 Debugging
 ![image](https://github.com/user-attachments/assets/84221d44-5adf-440b-a336-4ca27a4e2287)
 
-
+</details>
 
 
 
