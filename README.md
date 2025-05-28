@@ -90,6 +90,31 @@ Add Immediate
  Instruction:` addi a0, a0, %lo(LC1)`
 Purpose: The ADDI instruction adds an immediate value (12-bit constant) to the value in a source register (rs1) and stores the result in a destination register (rd).
 
+Task: Write a simple C program for a basic application and compile it using RISC-V GCC and simulate with SPIKE.
+
+Application: Countdown Timer
+
+The goal is to create a countdown timer that starts from a given value and decreases by one every second until it reaches zero.
+
+Program Requirements:
+
+Initialize the timer with a starting value (e.g., 10 seconds).
+
+Display the current countdown value.
+
+Decrease the timer value by one every second.
+
+Stop the countdown when the timer reaches zero.
+
+
+
+
+
+
+
+
+
+
 
 
 
