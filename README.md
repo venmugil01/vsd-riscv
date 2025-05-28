@@ -113,7 +113,11 @@ compilation
 
 ![p2](https://github.com/user-attachments/assets/e599dc0d-d3d6-45d5-9441-4f37e5fa23ee)
 
+Assembly language code
+![image](https://github.com/user-attachments/assets/3eeaa1d8-a54a-46cb-9bf0-54535674f4ed)
 
+Debugging
+![image](https://github.com/user-attachments/assets/84221d44-5adf-440b-a336-4ca27a4e2287)
 
 
 
