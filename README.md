@@ -66,3 +66,11 @@ Difference between -O1 and -Ofast
 Pushes the compiler to apply aggressive optimizations for maximum speed, even if it means ignoring some language rules or sacrificing portability. It can make code run faster, but may also change how certain calculations behave.
 
 </details>
+
+<details>
+<summary><b>Task 2:</b> Performing SPIKE simulation and Debugging the C code Using spike  </summary>   
+<br>
+What is Spike simulation?
+Spike is a RISC-V ISA simulator used to run and test RISC-V programs. GCC compiles C/C++ code for RISC-V, and Spike simulates its execution. The command spike pk sum1ton.o runs the compiled code to check if the instructions work correctly and to display the program output.
+
+![1a](https://github.com/user-attachments/assets/aacb19e5-b6ff-491c-ac7f-f73b080638a5)
