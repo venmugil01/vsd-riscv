@@ -274,8 +274,80 @@ Common U-Type Instrutions:
 | `LUI`            | `0110111`            | Load Upper Immediate                                    |
 | `AUIPC`          | `0010111`            | Add Upper Immediate to Program Counter (PC)            |
 
+There are two additional instruction formats — B-type and J-type — which are specifically designed to handle immediate values differently, mainly for branching and jumping operations.
 
+5.B-Type:
+-
+![image](https://github.com/user-attachments/assets/0fd62649-f420-4856-a07e-7a7125da8e06)
 
+B-Type instructions handle conditional branching. They check a condition (like equality or comparison), and if it's true, the program jumps to a new address using an offset. If not, it continues to the next instruction.
 
+Breakdown of the Fields:
 
+ 1. opcode (bits 6–0):
+  Identifies the overall type of operation (branch instruction).
+
+ 2. imm[11] (bit 7):
+  A middle bit of the 12-bit offset used for the branch target.
+
+ 3. imm[4:1] (bits 11–8):
+  Lower bits of the branch offset.
+
+ 4. funct3 (bits 14–12):
+  Specifies the condition for branching (e.g., equal, less than).
+
+ 5. rs1 (bits 19–15):
+  First register used for comparison.
+
+ 6. rs2 (bits 24–20):
+  Second register used for comparison.
+
+ 7. imm[10:5] (bits 30–25):
+  Higher bits of the offset, combined with other parts to form the full branch address.
+
+ 8. imm[12] (bit 31):
+  Sign bit of the offset. A value of 1 means a backward jump; 0 means forward.
+
+funct3 examples in B-Type:
+
+| **Instruction** | **`funct3` Value** | **Condition**                   |
+|------------------|---------------------|----------------------------------|
+| `BEQ`           | `000`              | Branch if `rs1 == rs2`.         |
+| `BNE`           | `001`              | Branch if `rs1 != rs2`.         |
+| `BLT`           | `100`              | Branch if `rs1 < rs2` (signed). |
+| `BGE`           | `101`              | Branch if `rs1 >= rs2` (signed).|
+| `BLTU`          | `110`              | Branch if `rs1 < rs2` (unsigned).|
+| `BGEU`          | `111`              | Branch if `rs1 >= rs2` (unsigned).|
+
+6.J-Type:
+-
+![J_type](https://github.com/user-attachments/assets/bfa2965c-35f5-4399-a634-fbb7bfa65b2f)
+
+J-Type instructions are used for unconditional jumps in the program. They control the flow by jumping directly to a specific address, often used for function calls or moving to a particular instruction in the code.
+
+Breakdown of the Fields:
+
+ 1. opcode (bits 6–0):
+  Tells the processor that this is a jump instruction.
+
+ 2. rd (bits 11–7):
+  This register stores the return address (the next instruction’s address, usually PC + 4) so the program knows where to come back after the jump.
+
+ 3. imm[19:12] (bits 19–12):
+  These bits make up part of the jump target address.
+
+ 4. imm[11] (bit 20):
+  Another bit of the address you're jumping to.
+
+ 5. imm[10:1] (bits 30–21):
+  These bits provide more of the jump offset — basically, how far to jump.
+
+ 6. imm[20] (bit 31):
+  The top (sign) bit of the offset. It shows whether the jump is forward or backward in the code.
+
+J-Type instructions:
+-
+| **Instruction** | **Opcode (Bits 6–0)** | **Registers** | **Description**                           |
+|------------------|-----------------------|---------------|-------------------------------------------|
+| `JAL`           | `1101111`            | `rd`          | Jump and Link: Save return address and jump to target address |
 
