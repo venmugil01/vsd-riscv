@@ -121,8 +121,158 @@ Debugging
 
 </details>
 
+<details>
+<summary><b>Task 3:</b> Various RISCV instruction type and 32 bit instruction code for instructions from application code  </summary>   
+<br>
 
+RISCV Instruction types
+There are 6 types of instruction 
+ 1.  R-Type (Register Type)
+ 2.  I-Type (Immediate Type)
+ 3.  S-Type (Store Type)
+ 4.  U-Type (Branch Type)
+ 5.  B-Type (Upper Immediate Type)
+ 6.  J-Type (Jump Type)
 
+The base RV32I ISA, there are four core instruction formats (R/I/S/U), as shown in Base instruction formats. All are a fixed 32 bits in length.
+![image](https://github.com/user-attachments/assets/6e63b0e1-acc9-4865-89ee-ba02534357f3)
+
+1.R-Type:
+--
+R-Type instructions are typically used for register-to-register operations
+
+Breakdown of the Fields:
+
+ 1. Opcode (bits 6-0):
+   The 7-bit opcode identifies the type of operation and the instruction format. For R-Type instructions, the opcode specifies that the instruction is register-based.
+
+ 2. rd( bits 11:7):
+   This bit is used for designation register where the output of the operation is written.
+   
+ 3. funct3( bits 14:12) :
+   This 3 bit is used for differentiate between categories of operations within the same opcode.
+
+   R type operations:
+| **funct3** | **Operation**                      |
+|------------|------------------------------------|
+| `000`      | Add / Sub (depends on `funct7`)   |
+| `001`      | Shift Left Logical (SLL)          |
+| `010`      | Set Less Than (SLT)               |
+| `011`      | Set Less Than Unsigned (SLTU)     |
+| `100`      | XOR                               |
+| `101`      | Shift Right (Logical/Arithmetic; depends on `funct7`) |
+| `110`      | OR                                |
+| `111`      | AND                               |
+
+ 4. rs1(bits 19:15) :
+  It specifies the first source register for the operation.
+
+ 6. rs2(bits 24:20) :
+  It specifies the second source register for the operation.
+
+ 8. funct7(bits 31:25) :
+  It provides additional differentiation between instructions that use the same opcode and fuct3.
+
+Examples for R Type operation.  
+
+| **funct7**  | **funct3** | **Operation**                        |
+|-------------|------------|--------------------------------------|
+| `0000000`   | `000`      | Add                                 |
+| `0100000`   | `000`      | Sub                                 |
+| `0000000`   | `001`      | Shift Left Logical (SLL)            |
+| `0000000`   | `010`      | Set Less Than (SLT)                 |
+| `0000000`   | `011`      | Set Less Than Unsigned (SLTU)       |
+| `0000000`   | `100`      | XOR                                 |
+| `0000000`   | `101`      | Shift Right Logical (SRL)           |
+| `0100000`   | `101`      | Shift Right Arithmetic (SRA)        |
+| `0000000`   | `110`      | OR                                  |
+| `0000000`   | `111`      | AND                                 |
+
+2.I-Type :
+--
+I-Type instructions are used for operations that involve immediate (constant) values, including arithmetic with constants, memory access like load operations, and control flow instructions such as jumps.
+
+Breakdown of the Fields:
+
+ 1. Opcode (bits 6–0):
+  These 7 bits tell the processor what kind of instruction it is — for example, whether it's doing arithmetic, loading data from memory, or jumping to a different   part of the program.
+
+ 2. rd (bits 11–7):
+  This is the register where the result of the instruction will be stored. Think of it as the "destination" for the output.
+
+ 3. funct3 (bits 14–12):
+  These 3 bits further specify what the instruction should do — like whether it's an addition, a load, or something else.
+
+ 4. rs1 (bits 19–15):
+  This tells the processor which register to use as the input or base value. For example, in a memory load, it might give the base address.
+
+ 5. imm[11:0] (bits 31–20):
+  This 12-bit field provides a constant value that's used directly in the instruction — like an offset for accessing memory or a number to add.
+
+I -Type instructions :
+-
+| **Instruction** | **opcode** | **funct3** | **Description**                       |
+|-----------------|------------|------------|---------------------------------------|
+| `addi`          | `0010011`  | `000`      | Add immediate to register (`rd = rs1 + imm`). |
+| `slti`          | `0010011`  | `010`      | Set if less than immediate (signed). |
+| `andi`          | `0010011`  | `111`      | Bitwise AND with immediate.          |
+| `lw`            | `0000011`  | `010`      | Load word from memory.               |
+| `lh`            | `0000011`  | `001`      | Load halfword from memory.           |
+| `jalr`          | `1100111`  | `000`      | Jump and link register (indirect jump). |
+
+3.S-Type:
+--
+S-Type instructions are mainly used to store data from a register into a specific memory location. They tell the processor where to save the value in memory.
+
+Breakdown of the Fields:
+
+ 1. opcode (bits 6–0):
+  Indicates the general type of operation being performed.
+
+ 2. imm[4:0] (bits 11–7):
+  The lower 5 bits of the 12-bit immediate value, which acts as an offset.
+
+ 3. funct3 (bits 14–12):
+  Specifies the kind of store operation, such as storing a byte, halfword, or word.
+
+ 4. rs1 (bits 19–15):
+  The first source register, usually holding the base address for the memory operation.
+
+ 5. rs2 (bits 24–20):
+  The register that contains the actual data value to be stored into memory.
+
+ 6. imm[11:5] (bits 31–25):
+  The upper 7 bits of the 12-bit immediate offset.
+  
+Common S-Type Instructions
+-
+| **Instruction** | **opcode**  | **funct3** | **Description**                      |
+|-----------------|-------------|------------|--------------------------------------|
+| `sw`           | `0100011`   | `010`      | Store Word (32-bit).                |
+| `sh`           | `0100011`   | `001`      | Store Halfword (16-bit).            |
+| `sb`           | `0100011`   | `000`      | Store Byte (8-bit).                 |
+
+4.U-Type :
+--
+U-Type format is used for instructions such as LUI (Load Upper Immediate) and AUIPC (Add Upper Immediate to PC). These instructions work with large immediate values, loading or adding a 20-bit constant to a register or the program counter.
+
+Breakdown of the Fields:
+
+ 1. opcode (bits 6–0):
+  Identifies the general type of operation.
+
+ 2. rd (bits 11–7):
+  Specifies the destination register where the result will be stored.
+
+ 3. imm[31:12] (bits 31–12):
+  A 20-bit immediate value used in the instruction. This constant is placed in the upper 20 bits of the destination register.
+  
+Common U-Type Instrutions:
+--
+| **Instruction** | **Opcode (Bits 6–0)** | **Description**                                         |
+|------------------|-----------------------|---------------------------------------------------------|
+| `LUI`            | `0110111`            | Load Upper Immediate                                    |
+| `AUIPC`          | `0010111`            | Add Upper Immediate to Program Counter (PC)            |
 
 
 
