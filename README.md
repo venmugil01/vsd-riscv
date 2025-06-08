@@ -669,3 +669,132 @@ I-Type  Instruction:
 <details>
 <summary><b>Task 4:</b> Functional simulation of RISC-V Core Verilog netlist and Testbench </summary>   
 <br>
+ 
+We'll be simulating RISC-V instructions using Verilog and observing how the signals behave using GTKWave.
+
+To do this, we’ll use two main tools: Icarus Verilog (iverilog) for simulation, and GTKWave for viewing the output waveforms.
+
+How it works?
+-
+First, we write the Verilog code that models the RISC-V instructions. Then, we run the simulation using Icarus Verilog, which generates a waveform file (usually in VCD format) that records how the signals change over time.
+
+Installing iverilog using command ``sudo apt install iverilog gtkwave``
+![1](https://github.com/user-attachments/assets/69936db1-825f-4904-b972-31c8926d5b14)
+
+
+Next, we open this waveform file in GTKWave. This gives us a visual view of the signals and helps us check if everything is working as expected—both in terms of functionality and timing.
+
+Steps to perform functional simulation of RISC-V:
+-
+1.create a new directory using your name as ``mkdir mugil``.
+
+2.create two files using command ``touch`` and give them names as ``mugil_rv32i.v``and ``mugil_rv32i_tb.v``.These are used for verilog and testbench files respectively.
+
+As part of this internship, we are not writing the Verilog code ourselves instead, we are cloning the Verilog and testbench code from a reference GitHub repository.
+
+Refernce Github Repository: [iiitb_rv32i](https://github.com/vinayrayapati/rv32i/tree/main)
+
+3.using leafpad copy the verilog and testbench code in respective files in the directory
+
+4.Simulate the Verilog code using
+
+``iverilog -o mugil_rv32i mugil_rv32i.v mugil_rv32i_tb.v`` 
+
+it will create iiitb_rv32i.vcd file which is used for gtkwave.
+![2](https://github.com/user-attachments/assets/bf2fba36-42f8-459c-9dfa-09012da255eb)
+
+
+5.Open the gtkwave using command ``gtkwave iiitb_rv32i.vcd``
+![3](https://github.com/user-attachments/assets/dc38ef5b-2594-4edb-b22f-2f12170477c1)
+
+
+The given Verilog file contains instructions that are hard-coded, meaning the designer has used custom bit patterns for each instruction instead of following the standard RISC-V specification for bit encoding.
+
+| **Operation**      | **Description**                                       | **Standard RISC-V ISA** | **Hard-Coded ISA** |
+|---------------------|-------------------------------------------------------|-------------------------|---------------------|
+| **ADD R6, R2, R1**  | Adds the values in R2 and R1, stores result in R6     | `32'h00110333`         | `32'h02208300`      |
+| **SUB R7, R1, R2**  | Subtracts the value in R2 from R1, stores result in R7| `32'h402083b3`         | `32'h02209380`      |
+| **AND R8, R1, R3**  | Performs bitwise AND between R1 and R3, stores in R8  | `32'h0030f433`         | `32'h0230a400`      |
+| **OR R9, R2, R5**   | Performs bitwise OR between R2 and R5, stores in R9   | `32'h005164b3`         | `32'h02513480`      |
+| **XOR R10, R1, R4** | Performs bitwise XOR between R1 and R4, stores in R10 | `32'h0040c533`         | `32'h0240c500`      |
+| **SLT R1, R2, R4**  | Sets R1 to 1 if R2 < R4, else sets to 0               | `32'h0045a0b3`         | `32'h02415580`      |
+| **ADDI R12, R4, 5** | Adds immediate value 5 to R4, stores result in R12    | `32'h004120b3`         | `32'h00520600`      |
+| **BEQ R0, R0, 15**  | Branches to offset 15 if R0 equals R0                 | `32'h00000f63`         | `32'h00f00002`      |
+| **SW R3, R1, 2**    | Stores word from R3 to memory address (R1 + 2)        | `32'h0030a123`         | `32'h00209181`      |
+| **LW R13, R1, 2**   | Loads word from memory address (R1 + 2) into R13      | `32'h0020a683`         | `32'h00208681`      |
+| **SRL R16, R14, R2**| Shifts R14 right by the value in R2, stores in R16    | `32'h0030a123`         | `32'h00271803`      |
+| **SLL R15, R1, R2** | Shifts R1 left by the value in R2, stores in R15      | `32'h002097b3`         | `32'h00208783`      |
+
+1. **Standard RISC-V ISA**: Instructions follow the official RISC-V specification for 32-bit instruction encoding.
+2. **Hard-Coded ISA**: Instructions deviate from the RISC-V standard and follow a custom encoding defined by the designer.
+3. To ensure correct simulation, you must use the hard-coded instruction encodings when working with the provided Verilog netlist and testbench.
+
+Veifying instructions using Gtkwave :
+-
+1.``ADD R6, R2, R1``
+![4](https://github.com/user-attachments/assets/182b7e7d-e069-4158-b4dc-43ba26dd926d)
+
+2.``SUB R7, R1, R2``
+![image](https://github.com/user-attachments/assets/73bdab8b-80eb-4a03-bb90-ae33cec81ba5)
+
+3.``AND R8, R1, R3``
+![image](https://github.com/user-attachments/assets/8028b48a-42bf-4755-854b-15cc69bf6f74)
+
+4.``OR R9, R2, R5``
+![image](https://github.com/user-attachments/assets/b5bd4e8e-793c-4249-8317-07b6d57f85ab)
+
+5.``XOR R10, R1, R4``
+![image](https://github.com/user-attachments/assets/6aa6654d-0aa0-470c-b7bc-3fa1b72bf954)
+
+6.``SLT R1, R2, R4``
+![image](https://github.com/user-attachments/assets/6c740f80-b9d0-4556-b0a6-1d7a3ef01b2d)
+
+7.``ADDI R12, R4, 5``
+![image](https://github.com/user-attachments/assets/c6c27835-f27f-4a08-92da-8962ef539834)
+
+8.``SW R3, R1, 2``
+![image](https://github.com/user-attachments/assets/bb45aea8-88d1-4bf4-9942-9e85d0fb2532)
+
+value in register R3 is stored into memory at an address calculated as the sum of the base address in register R1 and the offset 2.
+offset 2 is added to the base address from R1 to compute the target memory address (visible in the EX_MEM_ALU_OUT signal).
+
+9.``SRL r16, r11, r2``
+![image](https://github.com/user-attachments/assets/18a2dc5a-842a-473b-8b31-ec7348699d89)
+
+Perform a logical right shift on the value in r11 by the number of bits specified in r2, and store the result in r16.
+
+10.``BEQ R0, R0, 15``
+![image](https://github.com/user-attachments/assets/76f74921-5bbd-4d86-aa0b-39651bc83ea5)
+
+This instruction compares the values in registers R0 and R0.
+If the values are equal, the program counter (PC) is updated to branch to a target address determined by the offset
+
+Target Address=Current PC+Offset
+
+11.``BNE R0, R1, 15``
+![image](https://github.com/user-attachments/assets/53ed4850-52b7-4f40-874c-9541a9b33ca9)
+
+BNE (Branch Not Equal):
+
+Compares the values in R0 and R1.
+
+If R0 ≠ R1, the program counter (PC) branches to the target address.
+
+If R0 = R1, no branch occurs, and the PC continues sequentially.
+
+Offset = 20 (decimal).
+
+Branch Target Address=PC+Offset
+
+12.`` SLL R15, R1, R2``
+![image](https://github.com/user-attachments/assets/c3fe131b-6a6e-4e7a-a3ee-aa20cf6b49d3)
+
+Shift Left Logical (SLL) instruction, which shifts the bits in R1 to the left by the amount specified in R2, with the result stored in R15.
+
+R1: original value to be shifted.
+
+R2: Specifies the shift amount.
+
+Output:
+The result (R15) is observed as 0x00000019 in EX_MEM_ALUOUT.
+</details>
