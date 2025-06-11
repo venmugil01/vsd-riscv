@@ -1183,4 +1183,18 @@ int main(void) {
 
 Application Video
 --
+[Implementation Video Link](https://drive.google.com/file/d/1at2F9vbcUwWPTNPdEcd5aXNffy4jJlt4/view?usp=drive_link)
+</details>
+
+<details>
+<summary><b> Acknowledgement </summary>   
+<br>
+
+I want to express my sincere gratitude to Kunal Ghosh Sir for providing me with this wonderful opportunity to learn through the RISCV Architecture internship with VSDSquadron Mini. This internship not only deepened my understanding of the RISCV architecture but also provided valuable practical experience with the Squadron Mini.
+
+As the VSD Squadron Mini Board was essential to the successful completion of our 4x4 Keypad-Controlled Countdown Timer project, I would like to sincerely thank VSD for providing it.
+
+
+
+</details>
 
