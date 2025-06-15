@@ -798,6 +798,7 @@ R2: Specifies the shift amount.
 Output:
 The result (R15) is observed as 0x00000019 in EX_MEM_ALUOUT.
 </details>
+
 <details>
 <summary><b>Task 5:</b> Design and Implementation of Countdown Counter using Vsdsquadron-Mini </summary>   
 <br>
@@ -870,6 +871,12 @@ Application overview :
 -  User can press the * key at any time to restart the application, clearing the display and prompting the user to enter a new 4-digit countdown value.
 -  I2C protocol is used to control the LCD, allowing for clear and dynamic updates during the countdown process.
 
+
+</details>
+<details>
+ 
+<summary><b>Task 6: Final Code & Application Demo </summary>   
+<br>
 Code:
 -
 <details>
@@ -1180,13 +1187,14 @@ int main(void) {
 }
 ```
 </details>
-
 Application Video
 --
-[Implementation Video Link](https://drive.google.com/file/d/1at2F9vbcUwWPTNPdEcd5aXNffy4jJlt4/view?usp=drive_link)
-</details>
 
+[Implementation Video Link](https://drive.google.com/file/d/1at2F9vbcUwWPTNPdEcd5aXNffy4jJlt4/view?usp=drive_link)
+
+</details>
 <details>
+ 
 <summary><b> Acknowledgement </summary>   
 <br>
 
